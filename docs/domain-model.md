@@ -1,40 +1,18 @@
-                         ┌──────────────┐
-                         │     User     │
-                         └──────┬───────┘
-                                │
-                                │ membership
-                                ▼
-                         ┌──────────────┐
-                         │    Group     │
-                         └──────┬───────┘
-                                │
-                                │ responsible
-                                ▼
-┌──────────────┐          ┌──────────────┐
-│   Location   │◄─────────│   Equipment  │
-└──────┬───────┘          └──────┬───────┘
-       │                         │
-       │ history                ├── Status
-       ▼                         ├── Type
-Location History                 │
-                                 ├── Responsible Group History
-                                 │
-                                 ├── Maintenance
-                                 │
-                                 └── Calibration
+```mermaid
+%% Open Markdown Preview with Ctrl+Shift+V to visualize this diagram.
 
+flowchart TD
+    User -->|membership| Group
+    Group -->|responsible| Equipment
 
-CURRENT STATE
-    Equipment
-    ├── current Location
-    ├── current Responsible Group
-    ├── current Status
-    └── current Type
+    Location -->|current location| Equipment
+    Equipment --> Type
+    Equipment --> Status
 
-HISTORY
-    ├── Location History
-    ├── Responsible Group History
-    ├── Status History
-    ├── Maintenance History
-    ├── Calibration History
-    └── Audit History
+    Equipment -->|history| LocationHistory
+    Equipment -->|history| ResponsibleGroupHistory
+    Equipment -->|history| StatusHistory
+    Equipment --> Maintenance
+    Equipment --> Calibration
+    Equipment --> Audit
+```
